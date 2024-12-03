@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "964380164019",
+    "project_id": "flutter-project-as",
+    "storage_bucket": "flutter-project-as.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:964380164019:android:febdff0188f6ab134595c6",
+        "android_client_info": {
+          "package_name": "br.com.flutterapi"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC06RqVG_mYegrPR5_3rb715Ky1t20hNJA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

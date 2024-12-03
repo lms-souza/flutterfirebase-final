@@ -1,0 +1,77 @@
+import 'package:flutter/material.dart';
+import '../models/character.dart';
+
+class PersonagemCard extends StatelessWidget {
+  final Character personagem;
+
+  const PersonagemCard({super.key, required this.personagem});
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      // Usamos um Stack para colocar os elementos um em cima do outro (imagem no fundo e texto por cima)
+      children: [
+        // Container principal para exibir a imagem do personagem
+        Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            image: DecorationImage(
+              image: NetworkImage(personagem.image), // Imagem vinda da URL do personagem
+              fit: BoxFit.cover, // Preenche o espaço do container, mantendo a proporção
+            ),
+          ),
+        ),
+        // Container posicionado na parte inferior para os detalhes do personagem (nome, espécie e status)
+        Positioned(
+          bottom: 0, // Alinhado na parte inferior
+          left: 0,
+          right: 0,
+          child: Container(
+            padding: const EdgeInsets.all(8),
+            color: Colors.black.withOpacity(0.6), // Fundo preto semi-transparente para destacar o texto
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center, // Centraliza o texto horizontalmente
+              children: [
+                // Nome do personagem
+                Text(
+                  personagem.name,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 2),
+                // Espécie do personagem
+                Text(
+                  personagem.species,
+                  style: const TextStyle(
+                    color: Colors.white70,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                // Status do personagem (Vivo, Morto ou Desconhecido)
+                Text(
+                  personagem.status,
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w900,
+                    color: personagem.status == 'Alive'
+                        ? Colors.green // Verde para Vivo
+                        : personagem.status == 'Dead'
+                        ? Colors.red // Vermelho para Morto
+                        : Colors.yellow, // Amarelo para status Desconhecido
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}

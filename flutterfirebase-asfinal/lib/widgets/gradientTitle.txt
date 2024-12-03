@@ -1,0 +1,31 @@
+import 'package:flutter/material.dart';
+
+class GradientTitle extends StatelessWidget {
+  const GradientTitle({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity, // Faz o Container ocupar toda a largura da tela
+      decoration: const BoxDecoration(
+        // Adiciona uma decoração ao Container com um gradiente
+        gradient: LinearGradient(
+          colors: [
+            Color(0xFF00BFFF), // Cor azul do gradiente (lado esquerdo)
+            Color(0xFF00FF00), // Cor verde do gradiente (lado direito)
+          ],
+        ),
+      ),
+      padding: const EdgeInsets.all(16.0),
+      child: const Text(
+        "Rick and Morty",
+        style: TextStyle(
+          fontSize: 28,
+          fontWeight: FontWeight.bold,
+          color: Colors.black,
+        ),
+        textAlign: TextAlign.center,
+      ),
+    );
+  }
+}

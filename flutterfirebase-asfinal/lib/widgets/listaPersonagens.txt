@@ -1,0 +1,51 @@
+import 'package:flutter/material.dart';
+import '../models/character.dart';
+import 'personagenCard.dart';
+
+class ListaPersonagens extends StatelessWidget {
+  final Future<List<Character>> personagensFuture;
+
+  const ListaPersonagens({
+    super.key,
+    required this.personagensFuture,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<List<Character>>(
+      future: personagensFuture,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        if (snapshot.hasError) {
+          debugPrint(snapshot.error.toString());
+          return const Text("Erro ao carregar dados");
+        }
+        if (snapshot.hasData) {
+          List<Character> personagens = snapshot.data!;
+
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height * 0.7,
+              child: GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                  childAspectRatio: 0.8,
+                ),
+                itemCount: personagens.length,
+                itemBuilder: (context, index) {
+                  return PersonagemCard(personagem: personagens[index]);
+                },
+              ),
+            ),
+          );
+        }
+        return const Center(child: Text('Nenhum personagem encontrado.'));
+      },
+    );
+  }
+}
